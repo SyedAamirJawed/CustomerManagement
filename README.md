@@ -24,7 +24,7 @@ Follow these steps to set up and run the project locally:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/customer-management.git
+   git clone https://github.com/SyedAamirJawed/customer-management.git
 
 cd customer-management
 ./mvnw spring-boot:run
