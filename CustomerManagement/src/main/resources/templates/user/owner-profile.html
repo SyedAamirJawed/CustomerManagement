@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}" )>
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="" th:href="@{/css/style.css}" />
+
+	<title>Home</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card add-card">
+			<div class="card-body">
+
+				<!--massage alert show-->
+				<div th:if="${session.message}" th:classappend="${session.message.msgType}" class="alert" role="alert">
+					<p class="text-center" th:text="${session.message.msgContent}"></p>
+					<!-- Remove the message from the session after displaying it -->
+					<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+				</div>
+
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold;">&apid; Profile &apid;</h1>
+
+				<div class="container text-center mt-3">
+
+					<img src="" style="height: 200px;width: 200px;" class="profile-dp"
+						th:src="@{'/img/'+${ownerData.soImage}}" alt="profile photo" />
+					<h1 style="color:rgb(0, 0, 128); font-weight: bold; font-size: 55px; "> <span
+							th:text="${ownerData.soName}"></span></h1>
+
+				</div>
+
+				<table class="table text-center mt-4">
+					<thead>
+						<tr>
+							<th scope="col" style="font-weight: bold; font-size: 22px;">Username </th>
+							<th scope="col">&xrarr;</th>
+							<th scope="col" style="font-weight: bold; font-size: 22px;"><span th:text="${ownerData.soEmail}"></span></th>
+
+						</tr>
+
+
+
+					</thead>
+					<tbody>
+
+                        <!--Pending Amount-->
+						<tr>
+							<td style="font-weight: bold; font-size: 22px;">Total Pending Amount</td>
+							<th scope="col">&xrarr;</th>
+							<td><span style="color: red; font-weight: bold; font-size:22px;" th:text="${pAmount}"></span></td>
+						</tr>
+                         
+						<!--Received Amount-->
+						<tr>
+							<td style="font-weight: bold; font-size: 22px;">Total Received Amount </td>
+							<th scope="col">&xrarr;</th>
+							<td><span style="color:green; font-weight: bold; font-size: 22px;"  th:text="${rAmount}"></span></td>
+						</tr>
+
+
+						<tr>
+							<td style="font-weight: bold; font-size: 22px;" >Final Amount </td>
+							<th scope="col">&xrarr;</th>
+							<td>
+								<span th:text="${tAmount >= 0 ? tAmount +' • You will give' : -tAmount+' • You will get'}"
+									th:style="${tAmount >= 0 ? 'color: green; font-size: 30px; font-weight: bold;' : 'color: red; font-size: 30px; font-weight: bold;'}">
+								</span>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+				
+				<div class="dscriptaion text-center">
+					<h3>-: About your business :-</h3>
+					<p style="font-weight: bold;" th:text="${ownerData.soAbout}"></p>
+				</div>
+
+               <!--button-->
+				<div class="container text-center">
+
+					<a th:href="@{/User/UpdateProfile}" class="btn btn-primary text-white">Update</a>
+					<!--<a href="#"  class="btn btn-danger">Delete</a>-->
+				</div>
+
+			</div>
+		</div>
+
+
+	</section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}" )>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Customer List</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card add-card">
+			<div class="card-body">
+
+				<!--alert message-->
+
+				<div th:if="${session.message}" th:classappend="${session.message.msgType}" class="alert" role="alert">
+					<p class="text-center" th:text="${session.message.msgContent}"></p>
+					<!-- Remove the message from the session after displaying it -->
+					<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+				</div>
+
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Customer List &apid;</h1>
+
+				<table class="table mt-4">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Customer Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Email</th>
+							<th scope="col">Final Amount</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr th:each="c : ${cutomerList}">
+							<th scope="row" th:text="${'CTM00'+c.cId}"></th>
+
+							<th><img class="profile-dp" src="" th:src="@{'/img/'+${c.cImage}}"
+									alt="profile photo" /><span th:text="' &nbsp '+${c.cName} "></span> </th>
+							<th><i class="fa fa-phone"></i><span th:text="' &nbsp '+${c.cPhone}"></span></th>
+							<th><a href="" th:href="@{'/User/'+${c.cId}}"><span th:text="${c.cEmail}"></span></a> </th>
+
+							<th>
+								<span
+									th:text="${(c.cPaidAmt - c.cPendingAmt) >= 0 ? (c.cPaidAmt - c.cPendingAmt) +'  You Give' : -(c.cPaidAmt - c.cPendingAmt)+'  You Get'}"
+									th:style="${(c.cPaidAmt - c.cPendingAmt) >= 0 ? 'color: green; font-size: 15px; font-weight: bold;' : 'color: red; font-size: 15px; font-weight: bold;'}">
+								</span>
+							</th>
+
+							<!--Action-->
+							<td>
+								<a href="#" th:href="@{'/User/'+${c.cId}}" class="btn btn-primary " style="font-size: 13px;">Update</a>
+								<!--<a th:href="@{'/User/Update/'+${c.cId}}" class="fa fa-pencil blue-icon"
+									style=" color: blue;font-size: 20px;margin-right:15px;"></a>
+								<i style="border-left: 1px solid black; font-size: 20px; margin-right: 15px ;"></i>
+								<i class="fa fa-trash" style=" color: red; font-size: 20px;"></i>-->
+							</td>
+
+
+						</tr>
+
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li th:if="${currentPage != 0}" class="page-item"><a th:href="@{'/User/List/'+${currentPage}}"
+								class="page-link" href="#">Previous</a></li>
+						<li th:classappend="${currentPage==p-1?'active':''}"
+							th:each="p:${#numbers.sequence(1,totalPage)}" class="page-item"><a
+								th:href="@{'/User/List/'+${p}}" class="page-link" href="#"><span
+									th:text="${p}"></span></a></li>
+						<li th:if="${currentPage+1 != totalPage}" class="page-item"><a
+								th:href="@{'/User/List/'+${currentPage+2}}" class="page-link" href="#">Next</a></li>
+
+						<div class="container text-right">
+							<h3 style="font-weight: bold; color: sandybrown;">Toltal &nbsp;
+								<span th:text=" ${netAmt >= 0 ? netAmt +'   • You will give' : -netAmt+'   • You will get'}"
+									th:style="${netAmt >= 0 ? 'color: green; font-size: 30px; font-weight: bold;' : 'color: red; font-size: 30px; font-weight: bold;'}">
+								</span>
+							</h3>
+						</div>
+					</ul>
+				</nav>
+
+
+			</div>
+		</div>
+
+
+	</section>
+
+
+</body>
+
+</html>

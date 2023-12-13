@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card add-card">
+			<div class="card-body">
+
+				<form action="#" method="post" th:action="@{'/User/PendingAmount/'+${oneCustomerInfo.cId}}">
+					
+					<h1 class="text-center" style="color:#3689C9; font-weight: bold;">&apid; Customer Details &apid;
+					</h1>
+
+					<div class="container text-center mt-3">
+
+						<img src="" style="height: 200px;width: 200px;" class="profile-dp"
+							th:src="@{'/img/'+${oneCustomerInfo.cImage}}" alt="profile photo" />
+						<h1 style="color:rgb(0, 0, 128); font-weight: bold; font-size: 55px; "> <span
+								th:text="${oneCustomerInfo.cName}"></span></h1>
+
+					</div>
+
+					<table class="table text-center mt-4">
+						<thead>
+							<tr>
+								<th scope="col" style="font-weight: bold; font-size: 22px;">Customer ID </th>
+								<th scope="col">&xrarr;</th>
+								<th scope="col" style="font-weight: bold; font-size: 22px;"><span
+										th:text="${'CTM00'+oneCustomerInfo.cId}"></span></th>
+
+							</tr>
+
+
+
+						</thead>
+						<tbody>
+
+
+							<!--Pending Amount-->
+							<tr>
+								<td style="font-weight: bold; font-size: 22px;">Pending Amount</td>
+								<th scope="col">&xrarr;</th>
+								<td><span th:text="${pAmount}+' + '"
+										style="color: red; font-weight: bold; font-size:22px;"></span><input type="text"
+										name="addPending" placeholder="add pending amount" required /></td>
+							</tr>
+
+
+							<!--Received Amount-->
+							<tr>
+								<td style="font-weight: bold; font-size: 22px;">Received Amount </td>
+								<th scope="col">&xrarr;</th>
+								<td><span th:text="${rAmount}"
+										style="color:green; font-weight: bold; font-size: 22px;"></span>  &nbsp; <a th:href="@{'/User/Recevied/'+${oneCustomerInfo.cId}}" class="fa fa-pencil blue-icon"
+									style=" color: blue;font-size: 20px;margin-right:15px;"></a></td>
+							</tr>
+
+							<tr>
+								<td style="font-weight: bold; font-size: 22px;">Final Amount </td>
+								<th scope="col">&xrarr;</th>
+								<td>
+									<span
+										th:text="${(tAmount) >= 0 ? (tAmount) +' • You will get' : -(tAmount)+' • You will give'}"
+										th:style="${(tAmount) >= 0 ? 'color: red; font-size: 22px; font-weight: bold;' : 'color: green; font-size: 22px; font-weight: bold;' }">
+									</span>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="dscriptaion text-center">
+						<h3>-: Customer Note :-</h3>
+						<p style="font-weight: bold;" th:text="${oneCustomerInfo.cDetails}"></p>
+					</div>
+
+					<!--button-->
+					<div class="container text-center mt-3">
+						<button class="btn btn-success">Update Amount</button>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+
+	</section>
+
+</body>
+
+</html>

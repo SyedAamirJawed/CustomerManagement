@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}" )>
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="" th:href="@{/css/style.css}" />
+
+	<title>Home</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col">
+					<div class="card my-home">
+						<div class="card-body">
+
+							<h1 class="text-center" style="color:#3689C9; font-weight: bold;"> Customer </h1>
+
+							<div class="container text-center mt-3">
+								<h3>You have total customer </h3>
+							</div>
+
+							<div class="table text-center mt-2">
+								<h1 style="color: green;"><span th:text="${tCustomer}"></span></h1>
+							</div>
+
+							<!--Button-->
+							<div class="container text-center">
+								<a th:href="@{'/User/Add'}" class="btn btn-primary text-white">Add New Customer</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col">
+					<div class="card my-home">
+						<div class="card-body">
+
+							<h1 class="text-center" style="color:#3689C9; font-weight: bold;"> Amount </h1>
+
+							<div class="container text-center mt-3">
+								<h3>Total Pending Amount : <span th:text="${pAmount}"
+										style="color: red; font-weight: bold; font-size:22px;"></span></h3>
+							</div>
+
+							<div class="container text-center mt-3">
+								<h3>Total Receved Amount : <span th:text="${rAmount}"
+										style="color:green; font-weight: bold; font-size: 22px;"></span></h3>
+							</div>
+
+							<div class="container text-center mt-3">
+								<h3>Final Amount : <span th:text=" ${tAmount >= 0 ? tAmount +'   • You will give' : -tAmount+'   • You will get'}"
+									th:style="${tAmount >= 0 ? 'color: green; font-size: 24px; font-weight: bold;' : 'color: red; font-size: 24px; font-weight: bold;'}">
+								</span></h1>
+							</div>
+
+
+
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+
+	</section>
+
+
+
+	</section>
+
+
+</body>
+
+</html>

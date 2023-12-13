@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base::layout(~{::section})}" )>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Add Customer</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="card add-card">
+			<div class="card-body">
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Update <span style="color: rgb(0, 0, 160)" th:text="${oldData.cName}"></span> Profile &apid;</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-8 offset-md-2">
+
+							<form action="#" th:object="${customer}" enctype="multipart/form-data" method="post"
+								th:action="@{'/User/Updating/'+${oldData.cId}}" class="mt-2">
+
+                                <!--alert message-->
+                                
+                                <div th:if="${session.message}" th:classappend="${session.message.msgType}" class="alert" role="alert">
+								    <p class="text-center" th:text="${session.message.msgContent}"></p>
+								    <!-- Remove the message from the session after displaying it -->
+								     <th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+							   </div>
+								
+								<!--Profile Picture-->
+								<div class="container text-center ">
+									<img class="profile-dp" src="" style="height: 200px;width: 200px;" th:src="@{'/img/'+${oldData.cImage}}" alt="" />
+								</div>
+								
+									<!--image upload-->
+								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update Profile Picture :
+									<input type="file" name="profileDp"/>
+
+								</div>
+
+
+								<!--Name-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-user-alt"></i>
+										</div>
+									</div>
+
+									<input type="text" th:value="${oldData.cName}" id="name" name="cName" placeholder="Enter Name Here"
+										class="form-control" required />
+								</div>
+
+								<!--Phone-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-phone"></i>
+										</div>
+									</div>
+
+									<input required min="10" max="13" type="text" th:value="${oldData.cPhone}" id="phone" name="cPhone" placeholder="Enter Phone Number"
+										class="form-control" />
+								</div>
+
+								<!--Email-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-envelope"></i>
+
+										</div>
+									</div>
+
+									<input type="text" th:value="${oldData.cEmail}" id="email" name="cEmail" placeholder="Enter Mail Id"
+										class="form-control" required />
+								</div>
+
+								<!--Paid Amount-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-plus"></i>
+										</div>
+									</div>
+									<input type="text" th:value="${oldData.cPaidAmt}" id="paid" name="cPaidAmt" placeholder="Enter Receved Amount"
+										class="form-control" required />
+								</div>
+
+								<!--Pending Amount-->
+								<div class="input-group mt-3" required>
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-minus"></i>
+										</div>
+									</div>
+									<input type="text" th:value="${oldData.cPendingAmt}" id="pending" name="cPendingAmt"
+										placeholder="Enter Pending Amount" class="form-control" required />
+								</div>
+
+
+								<!--Details-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-briefcase"></i>
+										</div>
+									</div>
+									<textarea name="cDetails" th:text="${oldData.cDetails}" id="details" cols="92" rows="2"
+										placeholder="Enter Customer Deatils" class="form-control" required></textarea>
+								</div>
+
+								<!--button-->
+								<div class="container text-center mt-3">
+									<button class="btn btn-success">Update</button>
+								</div>
+
+
+							</form>
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+
+</body>
+
+</html>
