@@ -12,83 +12,83 @@
 
 		<div class="card add-card">
 			<div class="card-body">
-				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Update <span style="color: rgb(0, 0, 160)" th:text="${ownerData.soName}"></span> Profile &apid;</h1>
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Update <span
+						style="color: rgb(0, 0, 160)" th:text="${shopOwner.soName}"></span> Profile &apid;</h1>
 				<div class="container-fluid mt-1">
 					<div class="row">
 						<div class="col-md-8 offset-md-2">
 
-							<form action="#" th:object="${ownerData}" method="post" enctype="multipart/form-data"
+							<form action="#" th:object="${owner}" method="post" enctype="multipart/form-data"
 								th:action="@{'/User/UpdatingProfile'}" class="mt-2">
 
-                               
+
 								<!--Profile Picture-->
 								<div class="container text-center ">
-									<img class="profile-dp" src="" style="height: 200px;width: 200px;" th:src="@{'/img/'+${ownerData.soImage}}" alt="" />
-								</div>
-								
-									<!--image upload-->
-								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update Profile Picture :
-									<input type="file" name="profileDp"/>
-
+									<img class="profile-dp" src="" style="height: 200px;width: 200px;"
+										th:src="@{'/img/'+${shopOwner.soImage}}" alt="" />
 								</div>
 
+								<!--image upload-->
+								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update Profile
+									Picture :
+									<input type="file" name="profileDp" />
 
-								<!--Name-->
-								<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fas fa-user-alt"></i>
+								</div>
+
+
+									<!--Name-->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fas fa-user-alt"></i>
+											</div>
 										</div>
+	
+										<input type="text" th:value="${shopOwner.soName}" id="name" name="soName"
+											placeholder="Enter Name Here" class="form-control" required />
 									</div>
-
-									<input type="text" th:value="${ownerData.soName}" id="name" name="soName" placeholder="Enter Name Here"
-										class="form-control" required />
-								</div>
-
-								
-								</div>
-
-								<!--Email-->
-								<!--<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fa fa-envelope"></i>
-
+	
+									<!--Details-->
+									<div class="input-group mt-3">
+										<div class="input-group-prepend">
+											<div class="input-group-text">
+												<i class="fa fa-briefcase"></i>
+											</div>
 										</div>
+										<textarea name="soAbout" th:text="${shopOwner.soAbout}" id="details"
+											placeholder="Enter Customer Deatils" class="form-control" required></textarea>
 									</div>
-
-									<input type="text" th:value="${ownerData.soEmail}" id="soEmail" name="soEmail" placeholder="Enter Mail Id"
-										class="form-control" required />
-								</div>-->
-
-
-
-								<!--Details-->
-								<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fa fa-briefcase"></i>
-										</div>
-									</div>
-									<textarea name="soAbout" th:text="${ownerData.soAbout}" id="details" cols="92" rows="2"
-										placeholder="Enter Customer Deatils" class="form-control" required></textarea>
-								</div>
-
+									
+									
+							
+						  </div>
+						
 								<!--button-->
 								<div class="container text-center mt-3">
 									<button class="btn btn-success">Update</button>
 								</div>
+								
+								<div class="container text-center mt-3">
+									
+									<a th:href="@{'/User/ChangePassword'}" class="btn btn-warning">Change Password</a>
+								 </div>
+								
+				     </form>
 
 
-							</form>
-
-
-						</div>
 					</div>
 				</div>
-
 			</div>
+
 		</div>
+		</div>
+
+		<script>
+			$(document).ready(() => {
+				$(".item").removeClass('active');
+				$("#setting-link").addClass('active');
+			});
+		</script>
 
 	</section>
 

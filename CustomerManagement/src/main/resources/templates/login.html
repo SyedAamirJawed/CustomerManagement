@@ -30,16 +30,25 @@
 									</div>
 								</div>
 
+                                <!--massage alert show-->
+								<div th:if="${session.message}" th:classappend="${session.message.msgType}"
+									class="alert" role="alert">
+									<p class="text-center" th:text="${session.message.msgContent}"></p>
+									<!-- Remove the message from the session after displaying it -->
+									<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+								</div>
+
 								<!-- Form area -->
 								<div class="form-group">
 									<label for="username" class="text-info" style="color:#3689C9; font-weight: bold">Username</label><br>
 									<input type="text" placeholder="enter email" name="username" id="username"
-										class="form-control">
+										class="form-control" required>
 								</div>
 								<div class="mt-3">
 									<label for="password" class="text-info" style="color:#3689C9; font-weight: bold">Password</label><br>
 									<input type="password" name="password" placeholder="enter password" id="password"
-										class="form-control">
+										class="form-control" required>
+									<h6 class="text-right"> <a th:href="@{'/Password/Forgot'}">Forgot password ?</a></h6>
 								</div>
 
 

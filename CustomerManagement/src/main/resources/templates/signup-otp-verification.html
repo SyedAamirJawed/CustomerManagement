@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Signup</title>
+</head>
+
+<body>
+
+	<section>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-5">
+
+
+						<!--massage alert show-->
+						<div th:if="${session.message}" th:classappend="${session.message.msgType}" class="alert"
+							role="alert">
+							<p class="text-center" th:text="${session.message.msgContent}"></p>
+							<!-- Remove the message from the session after displaying it -->
+							<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+						</div>
+
+
+
+						<!--registration logo-->
+						<div class="container text-center">
+							<img class="" style="width: 80px;" src="" th:src="@{/img/registration.png}" alt="" />
+						</div>
+
+						<h1 class="text-center" style="color:#3689C9; font-weight: bold">Signup Here !!</h1>
+
+
+						<!--Registration Form-->
+
+						<form action="" th:action="@{/Submiting}" method="post" th:object="${shopOwner}">
+
+							<div class="form-group">
+								<label for="input-name" style="color:#3689C9; font-weight: bold">Your Name</label>
+								<input type="text" name="soName" class="form-control " id="input-name"
+									placeholder="Enter Name" required th:value="${shopOwner.soName}">
+
+								<!--th:classappend="${#fileds.hasError('soName') ? 'is-invalid':''}"-->
+								<!--<div class="invalid-feedback" th:each="e : ${#fileds.errors('soName')}" th:text="${e}"></div>-->
+
+							</div>
+
+							<div class="form-group">
+								<label for="input-email" style="color:#3689C9; font-weight: bold">Your Email</label>
+								<input type="email" class="form-control" name="soEmail" id="input-email"
+									placeholder="Enter Mail" required th:value="${shopOwner.soEmail}">
+
+							</div>
+
+							<div class="form-group">
+								<label for="input-password" style="color:#3689C9; font-weight: bold">Your Password</label>
+								<input type="password" class="form-control" name="soPassword" id="input-password"
+									placeholder="Enter Password" required th:value="${shopOwner.soPassword}">
+							</div>
+							
+								<div class="form-group text-center">
+									<label for="input-password" style="color:rgb(0, 0, 255); font-size: 20px; font-weight: bold"> Enter OTP Below </label>
+									<input type="text" placeholder="Enter OTP" name="getOtp" id="otp"
+										class="form-control">
+								</div>
+
+							<!--term and condition agrement-->
+							<div class="form-group form-check text-center">
+								<input type="checkbox" name="agreement" class="form-check-input" id="agreement" />
+								<label for="agreement">Accept term and condition</label>
+
+							</div>
+
+                          <!--button-->
+							<div class="text-center mb-4">
+								<input type="submit" class="btn btn-success btn-block" value="Signup"></input>
+								
+							</div>
+							
+							
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

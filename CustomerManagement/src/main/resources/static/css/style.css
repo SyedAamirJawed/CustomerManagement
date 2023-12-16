@@ -1,6 +1,6 @@
 
 .bg-nevbar{
-	background: #3689C9;
+	background: #4285f4;
 }
 
 .style-home{
@@ -119,6 +119,11 @@ body {
 .my-home{
 	max-width: 500px; 
     margin: auto;
+}
+
+.active{
+	background: #4285f4;
+	color: white !important;
 }
 
 
