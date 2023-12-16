@@ -14,6 +14,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CustomerManagement</name>
 	<description>This My First Spring Project</description>
+	
+	
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -92,8 +94,14 @@
 		</dependency>
 
 	</dependencies>
+	
+	
+	
+	
+	
 
 	<build>
+		<finalName>UdhaarKhaata</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
