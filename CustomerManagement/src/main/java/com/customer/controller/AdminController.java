@@ -11,7 +11,7 @@ public class AdminController {
 
 	@RequestMapping("/Index")
 	public String userDashord() {
-		System.out.println("Admin Index Page Executed..!");
+		System.out.println("Admin Dashbord Page Executed..!");
 		return "admin/admin-dashbord";
 	}
 	
