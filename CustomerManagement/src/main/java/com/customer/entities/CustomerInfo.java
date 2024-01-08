@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class CustomerInfo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cId;
 	private String cName;
 	private String cPhone;

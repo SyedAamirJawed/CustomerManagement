@@ -166,6 +166,7 @@ public class UserController {
 
 	}
 
+// Individual Customer Info
 	@SuppressWarnings("deprecation")
 	@GetMapping("/{userId}")
 	public String individualCutomer(@PathVariable("userId") Integer id, Model model, Principal principal) {
@@ -208,7 +209,7 @@ public class UserController {
 //Updating Pending Only
 	@GetMapping("Pending/{userId}")
 	public String pendingAmount(@PathVariable("userId") Integer id, Model model, HttpSession session) {
-		System.out.println("Edit Amount");
+		System.out.println("Edit Pending Amount");
 
 		CustomerInfo oneCustomer = customerRepo.findById(id).get();
 		model.addAttribute("oneCustomerInfo", oneCustomer);
@@ -226,7 +227,7 @@ public class UserController {
 //Updating Received Amount
 	@GetMapping("Recevied/{userId}")
 	public String reveivedAmount(@PathVariable("userId") Integer id, Model model, HttpSession session) {
-		System.out.println("Edit Amount");
+		System.out.println("Edit Recevied Amount");
 
 		CustomerInfo oneCustomer = customerRepo.findById(id).get();
 		model.addAttribute("oneCustomerInfo", oneCustomer);

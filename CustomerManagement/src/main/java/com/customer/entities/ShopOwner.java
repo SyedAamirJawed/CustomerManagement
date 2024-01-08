@@ -20,7 +20,7 @@ import javax.validation.constraints.NotBlank;
 public class ShopOwner {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int soId;
 	private String soName;
 	private String soRole;

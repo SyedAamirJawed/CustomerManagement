@@ -19,15 +19,16 @@ public class SendOtp {
 	
 	public boolean otpSend(String from, String to, String subject, String msg) {
 		boolean result = false;
-
+		String username="jamiahub";
+		String password="dodasc****mspvxq";
+		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", true);
 		properties.put("mail.smtp.starttls.enable", true);
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.port", "587");
 
-		String username="jamiahub";
-		String password="dodascwcajmspvxq";
+		
 
 		Session session = Session.getInstance(properties, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -36,7 +37,6 @@ public class SendOtp {
 		});
 
 		try {
-
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));

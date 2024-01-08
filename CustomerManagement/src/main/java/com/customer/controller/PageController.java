@@ -102,7 +102,7 @@ public class PageController {
 							
 		} else {
 			session.setAttribute("message",
-					new ShowMessage("Your mail is already exists please login here ", "alert-danger"));
+					new ShowMessage("User already exists please login here ", "alert-danger"));
 			return "login";
 		}
 
