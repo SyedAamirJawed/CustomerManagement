@@ -20,7 +20,7 @@ public class SendOtp {
 	public boolean otpSend(String from, String to, String subject, String msg) {
 		boolean result = false;
 		String username="jamiahub";
-		String password="dodasc****mspvxq";
+		String password="dodascwcajmspvxq";
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", true);

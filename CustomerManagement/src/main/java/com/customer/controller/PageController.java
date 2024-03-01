@@ -75,8 +75,8 @@ public class PageController {
 				String userByEmail = shopOwner.getSoEmail();
 	
 				String soName = shopOwner.getSoName();
+				
 				// Mail Operation Here
-	
 				int otp = secureRandom.nextInt(900000) + 100000;
 				System.out.println(otp);
 				tempOtp = otp;
@@ -85,10 +85,10 @@ public class PageController {
 				String to = userByEmail;
 				String subject = "signup OTP for Udhar Khaata";
 				String msg = "Hello <span style=\"font-weight: bold;\">" + soName + ",</span>"
-						+ "<br>Please enter below OTP to create your Udhar Khaata account.<br><br>"
-						+ "Your OTP is : <span style=\"font-weight: bold;\">" + otp + "</span>"
-						+ "<br><br>Note: This OTP is valid for the next 2 minutes only."
-						+ "<br><br><div style=\"color:red; text-align:center;\">copyright &copy; BugsOP</div>";
+							+ "<br>Please enter below OTP to create your Udhar Khaata account.<br><br>"
+							+ "Your OTP is : <span style=\"font-weight: bold;\">" + otp + "</span>"
+							+ "<br><br>Note: This OTP is valid for the next 2 minutes only."
+							+ "<br><br><div style=\"color:red; text-align:center;\">copyright &copy; BugsOP</div>";
 	
 				boolean otpSend = sendOtp.otpSend(from, to, subject, msg);
 				      if (otpSend) {
