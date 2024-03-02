@@ -92,7 +92,7 @@ public class UserController {
 		model.addAttribute("pageTitle", "Add Customer");
 		return "user/add-costomer";
 	}
-
+//Save Customer Data
 	@PostMapping("/Process")
 	public String processData(@ModelAttribute CustomerInfo customer,
 			@RequestParam("profileDp") MultipartFile profileImage, Principal principal, HttpSession session) {
@@ -112,9 +112,8 @@ public class UserController {
 			else {
 				customer.setcImage(profileImage.getOriginalFilename());
 				File saveFile = new ClassPathResource("/static/img").getFile();
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + System.currentTimeMillis()/1000 + profileImage.getOriginalFilename());
+				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + System.currentTimeMillis()/1000 + profileImage.getOriginalFilename());// save target folder in local directory
 				long copy = Files.copy(profileImage.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-				System.out.println(copy);
 				customer.setcImage(System.currentTimeMillis()/1000 +profileImage.getOriginalFilename());
 				System.out.println("Profile Upload Successfuly");
 			}
@@ -131,6 +130,7 @@ public class UserController {
 		return "user/add-costomer";
 	}
 
+//All Customer	
 	@GetMapping("List/{pageNo}")
 	public String customerList(@PathVariable("pageNo") Integer pageNum, Model model, Principal principal) {
 		System.out.println("Open Customer List Page ");
@@ -166,7 +166,7 @@ public class UserController {
 
 	}
 
-// Individual Customer Info
+//Individual Customer Info
 	@SuppressWarnings("deprecation")
 	@GetMapping("/{userId}")
 	public String individualCutomer(@PathVariable("userId") Integer id, Model model, Principal principal) {
@@ -181,6 +181,7 @@ public class UserController {
 		// Authorization
 		if (oneCustomer.getOwner().getSoId() == userByEmail.getSoId()) {
 			model.addAttribute("oneCustomerInfo", oneCustomer);
+			//model.addAttribute("defaultDp","profile-pic.png");
 			model.addAttribute("rAmount", oneCustomer.getcPaidAmt());
 			model.addAttribute("pAmount", oneCustomer.getcPendingAmt());
 			model.addAttribute("tAmount", oneCustomer.getcPendingAmt() - oneCustomer.getcPaidAmt());
@@ -188,23 +189,8 @@ public class UserController {
 		}
 		return "/user/ndividual-customer";
 	}
+	
 
-	@GetMapping("Delete/{userId}")
-	public String deleteCustomer(@PathVariable("userId") Integer id, Principal principal, HttpSession session) {
-
-		String username = principal.getName();
-		ShopOwner userByEmail = ownerRepo.getUserByEmail(username);
-
-		Optional<CustomerInfo> findById = customerRepo.findById(id);
-		CustomerInfo customerInfo = findById.get();
-
-		if (userByEmail.getSoId() == customerInfo.getOwner().getSoId()) {
-			customerRepo.deleteById(id);
-			System.out.println("Delete Successfully..!");
-			session.setAttribute("message", new ShowMessage("Customer Data Successfully Deleted..! ", "alert-success"));
-		}
-		return "redirect:/User/List/1";
-	}
 
 //Updating Pending Only
 	@GetMapping("Pending/{userId}")
@@ -275,9 +261,35 @@ public class UserController {
 		return "redirect:/User/" + id;
 	}
 
+//Delete Customer Data	
+	@GetMapping("Delete/{userId}")
+	public String deleteCustomer(@PathVariable("userId") Integer id, Principal principal, HttpSession session) throws IOException {
+
+		String username = principal.getName();
+		ShopOwner userByEmail = ownerRepo.getUserByEmail(username);
+
+		Optional<CustomerInfo> findById = customerRepo.findById(id);
+		CustomerInfo customerInfo = findById.get();
+
+		if (userByEmail.getSoId() == customerInfo.getOwner().getSoId()) {
+			
+			//Delete Customer From Database
+			customerRepo.deleteById(id);
+			
+			//Delete Profile Picture From Tomcat Local Directory
+			File saveFile = new ClassPathResource("/static/img").getFile();
+			File oldPicturePath = new ClassPathResource("/static/img").getFile();
+			File deleteOldFile = new File(oldPicturePath,customerInfo.getcImage());
+			deleteOldFile.delete();
+
+
+			System.out.println("Delete Successfully..!");
+			session.setAttribute("message", new ShowMessage("Customer Data Successfully Deleted..! ", "alert-success"));
+		}
+		return "redirect:/User/List/1";
+	}
 	
-	
-	// Updating All data
+// Updating All data
 	@GetMapping("Update/{userId}")
 	public String updateCustomer(@PathVariable("userId") Integer id, Model model) {
 		CustomerInfo customerInfo = customerRepo.findById(id).get();
@@ -286,8 +298,10 @@ public class UserController {
 		return "/user/update-profile";
 	}
 	@PostMapping("Updating/{userId}")
-	public String updatingData(@PathVariable("userId") Integer id, Model model,
-			@ModelAttribute("cutomer") CustomerInfo customerNew, @RequestParam("profileDp") MultipartFile profilePic,
+	public String updatingData(
+			@PathVariable("userId") Integer id, Model model,
+			@ModelAttribute("cutomer") CustomerInfo customerNew, 
+			@RequestParam("profileDp") MultipartFile profilePic,
 			HttpSession session) throws IOException {
 
 		CustomerInfo customerOld = customerRepo.findById(id).get();
@@ -325,7 +339,6 @@ public class UserController {
 	
 	
 	
-	
 	@GetMapping("/Profile")
 	public String profile(Principal principal, Model model) {
 
@@ -354,9 +367,6 @@ public class UserController {
 	}
 
 	
-	
-	
-	
 	@GetMapping("/UpdateProfile")
 	public String updateOwnerProfile() {
 		return "/user/owner-profileUpdate";
@@ -384,7 +394,6 @@ public class UserController {
 		if (newProfile.isEmpty()) {
 			ownerNew.setSoImage(owner.getSoImage());
 		} else {
-			System.out.println("enter elase Block");
 			File saveFile = new ClassPathResource("/static/img").getFile();
 			Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + System.currentTimeMillis()/1000 + profilePic.getOriginalFilename());
 			System.out.println(path);
@@ -407,8 +416,6 @@ public class UserController {
 		return "redirect:/User/Profile";
 	}
 
-	
-	
 	@GetMapping("/ChangePassword")
 	public String changePassword() {
 		return "/user/change-password";

@@ -41,14 +41,10 @@
 									th:text="${'CTM00'+oneCustomerInfo.cId}"></span></th>
 
 						</tr>
-
-
-
 					</thead>
+					
+					
 					<tbody>
-
-
-
 						<!--Pending Amount-->
 						<tr>
 							<td style="font-weight: bold; font-size: 22px;">Pending Amount</td>
@@ -91,7 +87,7 @@
                <!--button-->
 				<div class="container text-center">
 					<a th:href="@{'/User/Update/'+${oneCustomerInfo.cId}}" class="btn btn-primary text-white">Edit</a>
-					<a href="#" th:onclick="|deleteCustomer(${oneCustomerInfo.cId})|" class="btn btn-danger">Delete</a>
+					<a href="#" th:onclick="|deleteCustomer(${oneCustomerInfo.cId})|" class="btn btn-danger">Delete</a> <!--call deleteCustomer funcation from base page-->
 				</div>
 
 			</div>
