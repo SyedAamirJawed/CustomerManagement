@@ -12,7 +12,8 @@
 
 		<div class="card add-card">
 			<div class="card-body">
-				<h1 class="text-center" style="color:#4285f4; font-weight: bold">&apid; Update <span style="color: rgb(0, 0, 160)" th:text="${oldData.cName}"></span> Profile &apid;</h1>
+				<h1 class="text-center" style="color:#4285f4; font-weight: bold">&apid; Update <span
+						style="color: rgb(0, 0, 160)" th:text="${oldData.cName}"></span> Profile &apid;</h1>
 				<div class="container-fluid mt-1">
 					<div class="row">
 						<div class="col-md-8 offset-md-2">
@@ -20,37 +21,39 @@
 							<form action="#" th:object="${customer}" enctype="multipart/form-data" method="post"
 								th:action="@{'/User/Updating/'+${oldData.cId}}" class="mt-2">
 
-                                <!--alert message-->
-                                
-                                <div th:if="${session.message}" th:classappend="${session.message.msgType}" class="alert" role="alert">
-								    <p class="text-center" th:text="${session.message.msgContent}"></p>
-								    <!-- Remove the message from the session after displaying it -->
-								     <th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
-							   </div>
-								
+								<!--alert message-->
+
+								<div th:if="${session.message}" th:classappend="${session.message.msgType}"
+									class="alert" role="alert">
+									<p class="text-center" th:text="${session.message.msgContent}"></p>
+									<!-- Remove the message from the session after displaying it -->
+									<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
+								</div>
+
 								<!--Profile Picture-->
 								<div class="container text-center ">
-									<img class="profile-dp" src="" style="height: 200px;width: 200px;" th:src="@{'/img/'+${oldData.cImage}}" alt="" />
-								</div>
-								
-									<!--image upload-->
-								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update Profile Picture :
-									<input type="file" name="profileDp"/>
-
+									<img class="profile-dp" src="" style="height: 200px;width: 200px;"
+										th:src="@{'/img/'+${oldData.cImage}}" alt="" />
 								</div>
 
+								<!--image upload-->
+								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update
+									Picture :
+									<input type="file" name="profileDp" accept=".jpg, .png" />
 
-								<!--Name-->
-								<div class="input-group mt-3">
-									<div class="input-group-prepend">
-										<div class="input-group-text">
-											<i class="fas fa-user-alt"></i>
-										</div>
-									</div>
-
-									<input type="text" th:value="${oldData.cName}" id="name" name="cName" placeholder="Enter Name Here"
-										class="form-control" required />
 								</div>
+
+
+								<!-- Name -->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="name" name="cName" placeholder="Enter Customer Name" class="form-control" pattern="[A-Za-z]{4,15}" title="Name must be alphabte & 4-15 characters long" required />
+                                </div>
+
 
 								<!--Phone-->
 								<div class="input-group mt-3">
@@ -60,7 +63,8 @@
 										</div>
 									</div>
 
-									<input required min="10" max="13" type="text" th:value="${oldData.cPhone}" id="phone" name="cPhone" placeholder="Enter Phone Number"
+									<input required pattern="[0-9]{10}" title="Phone number must be 10 digits" type="text" th:value="${oldData.cPhone}"
+										id="phone" name="cPhone" placeholder="Enter Phone Number (10 digits)"
 										class="form-control" />
 								</div>
 
@@ -73,8 +77,8 @@
 										</div>
 									</div>
 
-									<input type="text" th:value="${oldData.cEmail}" id="email" name="cEmail" placeholder="Enter Mail Id"
-										class="form-control" required />
+									<input type="email" th:value="${oldData.cEmail}" id="email" name="cEmail"
+										placeholder="Enter Mail Id" class="form-control" required />
 								</div>
 
 								<!--Paid Amount-->
@@ -84,8 +88,8 @@
 											<i class="fa fa-plus"></i>
 										</div>
 									</div>
-									<input type="text" th:value="${oldData.cPaidAmt}" id="paid" name="cPaidAmt" placeholder="Enter Receved Amount"
-										class="form-control" required />
+									<input type="text" th:value="${oldData.cPaidAmt}" id="paid" name="cPaidAmt"
+										placeholder="Enter Receved Amount" class="form-control" required />
 								</div>
 
 								<!--Pending Amount-->
@@ -107,8 +111,9 @@
 											<i class="fa fa-briefcase"></i>
 										</div>
 									</div>
-									<textarea name="cDetails" th:text="${oldData.cDetails}" id="details" cols="92" rows="2"
-										placeholder="Enter Customer Deatils" class="form-control" required></textarea>
+									<textarea name="cDetails" th:text="${oldData.cDetails}" id="details" cols="92"
+										rows="2" placeholder="Enter Customer Deatils" class="form-control"
+										required></textarea>
 								</div>
 
 								<!--button-->
@@ -126,7 +131,7 @@
 
 			</div>
 		</div>
-		
+
 
 	</section>
 
