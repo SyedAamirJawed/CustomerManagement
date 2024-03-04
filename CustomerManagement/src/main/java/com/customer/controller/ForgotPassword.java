@@ -49,7 +49,7 @@ public class ForgotPassword {
 		
 		if (userByEmail==null) {
 			System.out.println("Account Not Found");
-			session.setAttribute("message", new ShowMessage("You don't have Udhar Khaata account please Signup first ", "alert-danger"));
+			session.setAttribute("message", new ShowMessage("You don't have Udhaar Khaata account please signup first ", "alert-danger"));
 			return"forgot-password";
 		}
 		else {
@@ -62,11 +62,11 @@ public class ForgotPassword {
 	        
 	        session.setAttribute("myOTP", otp);
 			
-	        String from="jamiahub@gmail.com";
+	        String from="udhaarkhaata@gmail.com";
 	        String to=email;
-	        String subject="Your OTP for reset Udhar Khaata password";
+	        String subject="OTP for reset Udhaar Khaata password";
 	        String msg = "Hello <span style=\"font-weight: bold;\">" + soName + ",</span>"
-	                + "<br>Please enter below OTP to reset your Udhar Khaata password.<br><br>"
+	                + "<br>Please enter below OTP to reset your Udhaar Khaata password.<br><br>"
 	                + "Your OTP is : <span style=\"font-weight: bold;\">" + otp + "</span>"
 	                + "<br><br>Note: This OTP is valid for the next 10 minutes only."
 	                + "<br><br><div style=\"color:red; text-align:center;\">copyright &copy; BugsOP</div>";

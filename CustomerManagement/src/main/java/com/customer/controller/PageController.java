@@ -81,11 +81,11 @@ public class PageController {
 				System.out.println(otp);
 				tempOtp = otp;
 	
-				String from = "jamiahub@gmail.com";
+				String from = "udhaarkhaata@gmail.com";
 				String to = userByEmail;
-				String subject = "signup OTP for Udhar Khaata";
+				String subject = "signup OTP for Udhaar Khaata";
 				String msg = "Hello <span style=\"font-weight: bold;\">" + soName + ",</span>"
-							+ "<br>Please enter below OTP to create your Udhar Khaata account.<br><br>"
+							+ "<br>Please enter below OTP to create your Udhaar Khaata account.<br><br>"
 							+ "Your OTP is : <span style=\"font-weight: bold;\">" + otp + "</span>"
 							+ "<br><br>Note: This OTP is valid for the next 2 minutes only."
 							+ "<br><br><div style=\"color:red; text-align:center;\">copyright &copy; BugsOP</div>";

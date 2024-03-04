@@ -31,50 +31,46 @@
 								<!--image upload-->
 								<div class="profile-image text-center mt-1" style="font-weight: bold;">Update Profile
 									Picture :
-									<input type="file" name="profileDp" />
-
+									<input type="file" name="profileDp" accept=".jpg, .png" />
 								</div>
 
+								<!--Name-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-user-alt"></i>
+										</div>
+									</div>
 
-									<!--Name-->
-									<div class="input-group mt-3">
-										<div class="input-group-prepend">
-											<div class="input-group-text">
-												<i class="fas fa-user-alt"></i>
-											</div>
-										</div>
-	
-										<input type="text" th:value="${shopOwner.soName}" id="name" name="soName"
-											placeholder="Enter Name Here" class="form-control" required />
-									</div>
-	
-									<!--Details-->
-									<div class="input-group mt-3">
-										<div class="input-group-prepend">
-											<div class="input-group-text">
-												<i class="fa fa-briefcase"></i>
-											</div>
-										</div>
-										<textarea name="soAbout" th:text="${shopOwner.soAbout}" id="details"
-											placeholder="Enter Customer Deatils" class="form-control" required></textarea>
-									</div>
-									
-									
-							
-						  </div>
-						
-								<!--button-->
-								<div class="container text-center mt-3">
-									<button class="btn btn-success">Update</button>
+									<input type="text" th:value="${shopOwner.soName}" id="name" name="soName"
+										placeholder="Enter Name Here" class="form-control" pattern="[A-Za-z]{4,15}"
+										title="Name must be alphabte & 4-15 characters long" required />
 								</div>
-								
-								<div class="container text-center mt-3">
-									
-									<a th:href="@{'/User/ChangePassword'}" class="btn btn-warning">Change Password</a>
-								 </div>
-								
-				     </form>
 
+								<!--Details-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-briefcase"></i>
+										</div>
+									</div>
+									<textarea name="soAbout" th:text="${shopOwner.soAbout}" id="details"
+										placeholder="Enter Your Business Deatils" class="form-control"
+										required></textarea>
+								</div>
+						</div>
+
+						<!--button-->
+						<div class="container text-center mt-3">
+							<button class="btn btn-success">Update</button>
+						</div>
+
+						<div class="container text-center mt-3">
+
+							<a th:href="@{'/User/ChangePassword'}" class="btn btn-warning">Change Password</a>
+						</div>
+
+						</form>
 
 					</div>
 				</div>
