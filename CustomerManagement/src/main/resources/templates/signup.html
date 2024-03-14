@@ -40,8 +40,7 @@
 
 							<div class="form-group">
 								<label for="input-name" style="color:#3689C9; font-weight: bold">Your Name</label>
-								<input type="text" name="soName" class="form-control " id="input-name"
-									placeholder="Enter Name" required th:value="${shopOwner.soName}">
+								<input type="text" name="soName" class="form-control " id="input-name" placeholder="Enter Name"  th:value="${shopOwner.soName}" pattern="[A-Za-z]{4,20}" title="Name must be alphabte & 4-20 characters long" required >
 
 								<!--th:classappend="${#fileds.hasError('soName') ? 'is-invalid':''}"-->
 								<!--<div class="invalid-feedback" th:each="e : ${#fileds.errors('soName')}" th:text="${e}"></div>-->

@@ -38,19 +38,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable() // CSRF protection ko disable karein
+        http.csrf().disable() 
             .authorizeRequests(authorize -> authorize
-                .requestMatchers(new AntPathRequestMatcher("/User/**")).hasRole("USER") // USER ke liye URLs set karein
-                .requestMatchers(new AntPathRequestMatcher("/Admin/**")).hasRole("ADMIN") // ADMIN ke liye URLs set karein
-                .anyRequest().permitAll() // Baki sab URLs sabko allow karein
+                .requestMatchers(new AntPathRequestMatcher("/User/**")).hasRole("USER") 
+                .requestMatchers(new AntPathRequestMatcher("/Admin/**")).hasRole("ADMIN") 
+                .anyRequest().permitAll() 
             )
             .formLogin()
-                .loginPage("/Login") // Custom login page set karein
-                .loginProcessingUrl("/dologin") // Login process URL set karein
-                .defaultSuccessUrl("/User/Index") // Default success URL set karein
+                .loginPage("/Login") 
+                .loginProcessingUrl("/dologin") 
+                .defaultSuccessUrl("/User/Index") 
             .and()
-            .authenticationProvider(daoAuthenticationProvider()); // Authentication provider set karein
+            .authenticationProvider(daoAuthenticationProvider()); 
 
-        return http.build(); // Security filter chain ko build karein
+        return http.build(); 
     }
 }

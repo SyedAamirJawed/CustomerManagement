@@ -20,7 +20,7 @@ public class SendOtp {
 	public boolean otpSend(String from, String to, String subject, String msg) {
 		boolean result = false;
 		String username="udhaarkhaata";
-		String password="egcghbgkxostwzgx";
+		String password="************";
 		
 
 		Properties properties = new Properties();
