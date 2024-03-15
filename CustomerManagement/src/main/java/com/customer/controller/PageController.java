@@ -118,7 +118,7 @@ public class PageController {
 		try {
 
 			if (checkBox == false) {
-				throw new Exception(" Please Accepet Term And Condition");
+				throw new Exception("Please Accepet Term And Condition");
 			}
 			System.out.println(tempOtp);
 			if (getOtp == tempOtp) {
@@ -146,7 +146,7 @@ public class PageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("shopOwner", shopOwner);
-			session.setAttribute("message", new ShowMessage("Somthing Went Wrong : " + e.getMessage(), "alert-danger"));
+			session.setAttribute("message", new ShowMessage(e.getMessage(), "alert-danger"));
 			return "signup-otp-verification";
 		}
 

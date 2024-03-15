@@ -21,7 +21,7 @@
 					<th:block th:text="${@removeSession.removeMassageFromThymeleaf()}"></th:block>
 				</div>
 
-				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Customer List &apid;</h1>
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold">Customer List</h1>
                  <div class="table-responsive">
 				<table class="table table-hover mt-4">
 					<thead class="thead-dark">
@@ -80,7 +80,7 @@
 								th:href="@{'/User/List/'+${currentPage+2}}" class="page-link" href="#">Next</a></li>
 
 						<div class="container text-right">
-							<h3 style="font-weight: bold; color: sandybrown;">Toltal &nbsp;
+							<h3 style="font-weight: bold; color: sandybrown;">Total &nbsp;
 								<span th:text=" ${netAmt >= 0 ? netAmt +'   • You will give' : -netAmt+'   • You will get'}"
 									th:style="${netAmt >= 0 ? 'color: green; font-size: 30px; font-weight: bold;' : 'color: red; font-size: 30px; font-weight: bold;'}">
 								</span>

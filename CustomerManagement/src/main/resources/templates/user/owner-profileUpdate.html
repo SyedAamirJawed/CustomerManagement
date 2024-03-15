@@ -12,8 +12,8 @@
 
 		<div class="card add-card">
 			<div class="card-body">
-				<h1 class="text-center" style="color:#3689C9; font-weight: bold">&apid; Update <span
-						style="color: rgb(0, 0, 160)" th:text="${shopOwner.soName}"></span> Profile &apid;</h1>
+				<h1 class="text-center" style="color:#3689C9; font-weight: bold">Update <span
+						style="color: rgb(0, 0, 160)" th:text="${shopOwner.soName}"></span> Profile</h1>
 				<div class="container-fluid mt-1">
 					<div class="row">
 						<div class="col-md-8 offset-md-2">
@@ -43,7 +43,7 @@
 									</div>
 
 									<input type="text" th:value="${shopOwner.soName}" id="name" name="soName"
-										placeholder="Enter Name Here" class="form-control" pattern="[A-Za-z]{4,15}"
+										placeholder="Enter Name Here" class="form-control" pattern="[A-Za-z ]{4,15}"
 										title="Name must be alphabte & 4-15 characters long" required />
 								</div>
 
